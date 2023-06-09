@@ -1,0 +1,20 @@
+
+sudo docker build -t web .
+ 
+sudo docker images
+
+sudo docker login
+
+sudo docker run -p 80:80 web
+
+docker run -d --name web-conatiner -p 80:80 image_name
+
+Check running website
+https://localhost/80
+
+sudo docker tag     71877f47754d   basit56700/test_repo:tagname
+
+sudo docker push basit56700/test_repo:tagname 
+
+
+https://hub.docker.com/layers/basit56700/test_repo/tagname/images/sha256-78412f28b3f837bf950e8bce3396d771bae25100aeb7af74fbc16701899220dd?context=repo
