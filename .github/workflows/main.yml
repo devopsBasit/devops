@@ -1,28 +1,26 @@
-name: image deploy S3
+name: build mern image and push to docker hub
 
 on:
   push:
    branches:
       - "master"
   
-  
+  pull_request:
+    branches:
+      - "master"
+
 jobs:
-  
-  deploy-S3 bucket:
-    name: Client
+  deploy-S3-bucket:
+    name: S-3
     runs-on: ubuntu-latest
-    uses: actions/checkout@v3
 
 
     steps:
-      - name: check out the repo
-        uses: actions/checkout@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}}
-          aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
-          aws-region: us-east-1
+    - name: AWS Credential
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}}
+        aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
+        aws-region: us-east-1
+    - name: Push to AWS S3 Bucket
+      run: aws s3 sync . s3://aws_bucket_name
