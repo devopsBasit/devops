@@ -3,11 +3,7 @@ name: build mern image and push to docker hub
 on:
   push:
    branches:
-      - "master"
-  
-  pull_request:
-    branches:
-      - "master"
+      - "main"
 
 jobs:
   deploy-S3-bucket:
