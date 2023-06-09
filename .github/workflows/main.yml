@@ -19,4 +19,4 @@ jobs:
         aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
         aws-region: us-east-1
     - name: Push to AWS S3 Bucket
-      run: aws s3 sync . s3://aws_bucket_name
+      run: aws s3 sync . s3://basit56700
